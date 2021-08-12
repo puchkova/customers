@@ -40,7 +40,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - Open the API Client (for example Postman)
 - Send the **GET** request using URL http://localhost:1323/customers
 - You can see customers from database in the request body
-- Send the **POST** request using Query Params (key : firstname ; value : customer name) 
+- Send the **POST** request using Query Params *(key : firstname ; value : customer name)* 
 or use the URL http://localhost:1323/customers?firstname=Hugo&lastname= Nospmis II&birthdate=2000-05-25&gender=Male&email=hsimpson@gmail.com&address=742 Evergreen Terrace, Springfield 
 - You can see "Customer posted" message in response body 
 - You can check that customer with name Hugo was added to database using GET request http://localhost:1323/customers?firstname=hugo
