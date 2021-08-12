@@ -1,4 +1,4 @@
-CREATE TABLE customers2
+CREATE TABLE customers
 (
     id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     firstname text COLLATE pg_catalog."default",
@@ -9,5 +9,5 @@ CREATE TABLE customers2
     address text COLLATE pg_catalog."default"
 );
 
-INSERT INTO customers2(id, firstname, lastname, birthdate, gender, email, address) VALUES
+INSERT INTO customers(id, firstname, lastname, birthdate, gender, email, address) VALUES
     (gen_random_uuid(), 'Tatjana', 'Putskova', '1993-05-21', 'Female', 'email@gmail.com', 'Sütiste tee 19, Tallinn' );
