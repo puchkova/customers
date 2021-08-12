@@ -1,4 +1,4 @@
-# customers
+# Customers
 The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST API with **Gorm** library.
 
 ## Usage
@@ -25,7 +25,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 
 ### New Server
 - Add new server 
-- general > name > test
+- general > name > **test**
 - connection > 
 	 - host name/address > **your IP address** 
 	 - *To check the IP address use ipconfig /all command. You need the IPv4 Address line(192.168.1....)(Preferred)*
