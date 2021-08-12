@@ -52,7 +52,9 @@ func CreateCustomer(c echo.Context) error {
 		Email:     email,
 		Address:   address})
 
-	return nil
+	//return nil
+	var message = "The customer is added"
+	return c.JSON(http.StatusMethodNotAllowed, message)
 }
 
 func UpdateCustomer(c echo.Context) error {
@@ -75,5 +77,7 @@ func UpdateCustomer(c echo.Context) error {
 		Gender:    model.Gender(gender),
 		Email:     email,
 		Address:   address})
-	return nil
+
+	var message = "The customer is updated"
+	return c.JSON(http.StatusMethodNotAllowed, message)
 }
