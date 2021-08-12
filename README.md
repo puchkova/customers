@@ -46,7 +46,7 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname= Nospmis 
 - You can check that customer with name Hugo was added to database using GET request http://localhost:1323/customers?firstname=hugo
 - Send the **PUT** request using Query Params and field need to be updated. Get the id from GET response
 
-##Application Structure
+## Application Structure
 - `config` and `storage` packages contains files with name `db.go`
 - `controller`, `model` and `service` packages contains files with name `customer.go`
 - Main directory contains `docker-compose.yml` and `docker_itit.sql` files
