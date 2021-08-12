@@ -4,8 +4,8 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 ## Usage
 ### API
 - GET http://localhost:1323/customers 
-- GET http://localhost:1323/customers?firstname=*first name to search*
-- GET http://localhost:1323/customers?lastname=*last name to search*
+- GET http://localhost:1323/customers?firstname= *first name to search*
+- GET http://localhost:1323/customers?lastname= *last name to search*
 - POST http://localhost:1323/customers?[query param key]=[query param value]&...
 - PUT http://localhost:1323/customers?[id uuid]=[*customer id to update*]&...
 
