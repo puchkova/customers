@@ -7,9 +7,9 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - GET http://localhost:1323/customers?firstname=*first name to search*
 - GET http://localhost:1323/customers?lastname=*last name to search*
 - POST http://localhost:1323/customers?[query param key]=[query param value]&...
-- PUT http://localhost:1323/customers?[id uuid[=[*customer id to update*]&...
+- PUT http://localhost:1323/customers?[id uuid]=[*customer id to update*]&...
 
-##Installing & Running
+## Installing&Running
 - Clone thist repo https://github.com/puchkova/customers.git
 - Start docker desktop app
 
@@ -47,8 +47,8 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname= Nospmis 
 - Send the **PUT** request using Query Params and field need to be updated. Get the id from GET response
 
 ##Application Structure
-- `Config` and `storage` packages contains files with name `db.go`
-- `Controller`, `model` and `service` packages contains files with name `customer.go`
+- `config` and `storage` packages contains files with name `db.go`
+- `controller`, `model` and `service` packages contains files with name `customer.go`
 - Main directory contains `docker-compose.yml` and `docker_itit.sql` files
 - API routes are in `main.go` file that is in main directory
 
@@ -85,7 +85,7 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname= Nospmis 
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male *successful request and message "The customer is updated"*
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=A *request is not allowed and message "Invalid First Name"*
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=kkkk.lgggg *request is not allowed and message "Invalid email address format"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1900-02-03 request is not allowed "Age should be in the range from 18 to 60 years"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1999-02-03 successful request and message "The customer is updated"*
+- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1900-02-03 *request is not allowed "Age should be in the range from 18 to 60 years"*
+- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1999-02-03 *successful request and message "The customer is updated"*
 
 
