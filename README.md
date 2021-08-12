@@ -1,8 +1,7 @@
 # Customers
 The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST API with **Gorm** library.
 
-## Usage
-### API
+## API
 - GET http://localhost:1323/customers 
 - GET http://localhost:1323/customers?firstname= *first name to search*
 - GET http://localhost:1323/customers?lastname= *last name to search*
