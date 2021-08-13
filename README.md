@@ -88,7 +88,7 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&b
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male *successful request and message "The customer is updated"*
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=A *request is not allowed and message "Invalid First Name"*
 - PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=kkkk.lgggg *request is not allowed and message "Invalid email address format"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1900-02-03 *request is not allowed "Age should be in the range from 18 to 60 years"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender= Male&adderess=755 Evergreen Terrace, Springfield&birthdate=1999-02-03 *successful request and message "The customer is updated"*
+- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1900-02-03 *request is not allowed "Age should be in the range from 18 to 60 years"*
+- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1999-02-03 *successful request and message "The customer is updated"*
 
 
