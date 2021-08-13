@@ -1,19 +1,25 @@
 # Customers
 The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST API with **Gorm** library.
 
+## Prerequisites
+- The Go programming language https://golang.org/dl/
+- Docker Desktop https://www.docker.com/products/docker-desktop
+- GoLand or similar IDE https://www.jetbrains.com/go/promo/?source=google&medium=cpc&campaign=10156131500&gclid=CjwKCAjwsNiIBhBdEiwAJK4khrn3IDTmD-Xv1BFZ9HQeeSUwIeIFaG69dxoHLW1ACvjxdrZxD5Dn9RoCpXQQAvD_BwE
+- Postman or similar API client https://www.postman.com/
+
 ## API
 - GET http://localhost:1323/customers 
-- GET http://localhost:1323/customers?firstname= *first name to search*
-- GET http://localhost:1323/customers?lastname= *last name to search*
-- POST http://localhost:1323/customers?[query_param_key]= *[query param value]&...*
-- PUT http://localhost:1323/customers?[id_uuid]= *[customer id to update]&...*
+- GET http://localhost:1323/customers ?firstname=[*first name to search*]
+- GET http://localhost:1323/customers ?lastname=*[*last name to search*]
+- POST http://localhost:1323/customers ?[query param key]=[*new value*]&...
+- PUT http://localhost:1323/customers ?[id]=[customer to update id(uuid)]&[field to update key]=[*new value*]...
 
 ## Installing&Running
 - Clone thist repo https://github.com/puchkova/customers.git
 - Start docker desktop app
 
 ### Terminal
-- Open your terminal and run the `docker-compose up` command to run the client application
+- Open your terminal and run the `docker-compose up` to create and run docker containers
 - Run `go run main.go` command to start the application
 
 ### Database
@@ -21,8 +27,6 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - Sign in 
 	 - login: **test@gmail.com**
 	 - password: **test123!**
-
-### New Server
 - Add new server 
 - general > name > **test**
 - connection > 
@@ -43,7 +47,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Nospmis&birthdate=2000-05-25&gender=Male&email=hsimpson@gmail.com&address=742 Evergreen Terrace, Springfield 
 - You can see *"The customer is added"* message in response body 
 - You can check that customer with name Hugo was added to database using GET request http://localhost:1323/customers?firstname=hugo
-- Send the **PUT** request using Query Params and field need to be updated. Get the id from GET response
+- Send the **PUT** request using id as first query parameter, put fields to update as query parameters. Get the id from GET response
 
 ## Application Structure
 - `config` and `storage` packages contains files with name `db.go`
