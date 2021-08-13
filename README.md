@@ -2,10 +2,10 @@
 The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST API with **Gorm** library.
 
 ## Prerequisites
-- The Go programming language https://golang.org/dl/
-- Docker Desktop https://www.docker.com/products/docker-desktop
-- GoLand or similar IDE https://www.jetbrains.com/go/promo/?source=google&medium=cpc&campaign=10156131500&gclid=CjwKCAjwsNiIBhBdEiwAJK4khrn3IDTmD-Xv1BFZ9HQeeSUwIeIFaG69dxoHLW1ACvjxdrZxD5Dn9RoCpXQQAvD_BwE
-- Postman or similar API client https://www.postman.com/
+- The **Go** programming language https://golang.org/dl/
+- **Docker Desktop** https://www.docker.com/products/docker-desktop
+- **GoLand** or similar IDE https://www.jetbrains.com/go/promo/?source=google&medium=cpc&campaign=10156131500&gclid=CjwKCAjwsNiIBhBdEiwAJK4khrn3IDTmD-Xv1BFZ9HQeeSUwIeIFaG69dxoHLW1ACvjxdrZxD5Dn9RoCpXQQAvD_BwE
+- **Postman** or similar API client https://www.postman.com/
 
 ## API
 - GET http://localhost:1323/customers 
