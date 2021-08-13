@@ -40,7 +40,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - *Now you can check the customer table servers>test>databases>root>schemas>tables*
 
 ### API
-- Open the API Client (for example Postman)
+- Open the Postman
 - Send the **GET** request using URL http://localhost:1323/customers
 - You can see customers from database in the request body
 - Send the **POST** request using Query Params *(key : firstname ; value : customer name)* 
