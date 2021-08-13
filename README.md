@@ -44,7 +44,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - Send the **GET** request using URL http://localhost:1323/customers
 - You can see customers from database in the request body
 - Send the **POST** request using Query Params *(key : firstname ; value : customer name)* 
-or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Nospmis&birthdate=2000-05-25&gender=Male&email=hsimpson@gmail.com&address=742 Evergreen Terrace, Springfield 
+or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&birthdate=2000-05-25&gender=Male&email=hbouvier@gmail.com 
 - You can see *"The customer is added"* message in response body 
 - You can check that customer with name Hugo was added to database using GET request http://localhost:1323/customers?firstname=hugo
 - Send the **PUT** request using id as first query parameter, put fields to update as query parameters. Get the id from GET response
