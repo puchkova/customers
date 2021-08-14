@@ -32,10 +32,6 @@ const (
 	Female        = "Female"
 )
 
-func (c *Customer) GetGender() Gender {
-	return c.Gender
-}
-
 func (e Gender) String() string {
 	genders := [...]string{"Male", "Female"}
 
@@ -45,7 +41,6 @@ func (e Gender) String() string {
 			return x
 		}
 	}
-
 	return ""
 }
 
@@ -63,7 +58,7 @@ func (c *Customer) MarshalJSON() ([]byte, error) {
 		Firstname: c.Firstname,
 		Lastname:  c.Lastname,
 		Birthdate: c.Birthdate.Format("2006-01-02"),
-		Gender:    c.GetGender().String(),
+		Gender:    c.Gender.String(),
 		Email:     c.Email,
 		Address:   c.Address,
 		Alias:     (*Alias)(c),
