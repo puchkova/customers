@@ -10,7 +10,6 @@ import (
 	"time"
 )
 
-var layout = "2006-01-02"
 var customers []model.Customer
 
 func RetrieveQueryParameters(c echo.Context) (string, string, string, string, string, string) {
@@ -34,7 +33,7 @@ func GetFilteredCustomers(query string, name string) *gorm.DB {
 }
 
 func ParseTimeString(birthdate string) (time.Time, error) {
-	return time.Parse(layout, birthdate)
+	return time.Parse("2006-01-02", birthdate)
 }
 
 func TrimAndUpperCaseString(name string) string {
