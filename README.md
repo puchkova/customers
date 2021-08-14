@@ -8,11 +8,11 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - **Postman** or similar API client https://www.postman.com/
 
 ## API
-- GET http://localhost:1323/customers 
-- GET http://localhost:1323/customers ?firstname=[*first name to search*]
-- GET http://localhost:1323/customers ?lastname=[*last name to search*]
-- POST http://localhost:1323/customers ?[query param key]=[*new value*]&...
-- PUT http://localhost:1323/customers ?[id]=[*customer to update id(uuid)*]&[field to update key]=[*new value*]...
+- **GET** http://localhost:1323/customers 
+- **GET** http://localhost:1323/customers ?firstname=[*first name to search*]
+- **GET**** http://localhost:1323/customers ?lastname=[*last name to search*]
+- **POST** http://localhost:1323/customers ?[query param key]=[*new value*]&...
+- **PUT** http://localhost:1323/customers ?[id]=[*customer to update id(uuid)*]&[field to update key]=[*new value*]...
 
 ## Installing&Running
 - Clone thist repo https://github.com/puchkova/customers.git
@@ -28,7 +28,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&birthdate=2000-05-25&gender=Male&email=hbouvier@gmail.com 
 - You can see *"The customer is added"* message in response body 
 - You can check that customer with name Hugo was added to database using GET request http://localhost:1323/customers?firstname=hugo
-- Send the **PUT** request using id as first query parameter, put fields to update as query parameters. Get the id from GET response
+- Send the **PUT** request using id as first query parameter, insert values to update as query parameters. Get the id from GET response
 
 ## Application Structure
 - `config` and `storage` packages contains files with name `db.go`
@@ -52,7 +52,7 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&b
 	 - password: **root**
 - Press save button
 - Now you can check the customer table *servers > test > databases > root > schemas > tables*
-- Right click on customers table, choose query tool, insert *SELECT * FROM customers;* query and press start button to see the data
+- To see table data right click on customers table, choose query tool, insert *SELECT * FROM customers;* query and press execute button
 
 ## Cases for Manual API Testing
 ### GET
@@ -87,10 +87,10 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&b
         }
     ],
 
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male *successful request and message "The customer is updated"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=A *request is not allowed and message "Invalid First Name"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=kkkk.lgggg *request is not allowed and message "Invalid email address format"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1900-02-03 *request is not allowed "Age should be in the range from 18 to 60 years"*
-- PUT http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1999-02-03 *successful request and message "The customer is updated"*
+- **PUT** http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male *successful request and message "The customer is updated"*
+- **PUT** http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=A *request is not allowed and message "Invalid First Name"*
+- **PUT** http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=kkkk.lgggg *request is not allowed and message "Invalid email address format"*
+- **PUT** http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1900-02-03 *request is not allowed "Age should be in the range from 18 to 60 years"*
+- **PUT** http://localhost:1323/customers?id=346f6f5b-52a8-48e7-bbb6-99d0e368ed72&gender=Male&firstname=Sven&email=sven.simpson@gmail.com&gender=Male&birthdate=1999-02-03 *successful request and message "The customer is updated"*
 
 
