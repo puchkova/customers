@@ -31,7 +31,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 - general > name > **test**
 - connection > 
 	 - host name/address > **your IP address** 
-	 - *To check the IP address use ipconfig /all command. You need the IPv4 Address line(192.168.1....)(Preferred)*
+	 - *To check the IP address use ipconfig /all command. You need the IPv4 Address line(192.168.1....(Preferred))*
 	 - port: **5432** 
 	 - maintenance database: **root**
 	 - username: **root**
