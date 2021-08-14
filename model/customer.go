@@ -49,24 +49,23 @@ func (e Gender) String() string {
 	return ""
 }
 
-func (c *Customer) MarshalGenderJson() ([]byte, error) {
+func (c *Customer) MarshalJSON() ([]byte, error) {
 	type Alias Customer
 	return json.Marshal(&struct {
-		*Alias
-		Gender Gender `json:"gender"`
-	}{
-		Alias:  (*Alias)(c),
-		Gender: Gender(c.GetGender().String()),
-	})
-}
-
-func (c *Customer) MarshalDateJSON() ([]byte, error) {
-	type Alias Customer
-	return json.Marshal(&struct {
-		*Alias
+		Firstname string `json:"firstname"`
+		Lastname  string `json:"lastname"`
 		Birthdate string `json:"birthdate"`
+		Gender    string `json:"gender"`
+		Email     string `json:"email"`
+		Address   string `json:"address"`
+		*Alias
 	}{
-		Alias:     (*Alias)(c),
+		Firstname: c.Firstname,
+		Lastname:  c.Lastname,
 		Birthdate: c.Birthdate.Format("2006-01-02"),
+		Gender:    c.GetGender().String(),
+		Email:     c.Email,
+		Address:   c.Address,
+		Alias:     (*Alias)(c),
 	})
 }
