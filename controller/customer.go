@@ -53,7 +53,6 @@ func CreateCustomer(c echo.Context) error {
 		Email:     email,
 		Address:   address})
 
-	//return nil
 	var message = "The customer is added"
 	return c.JSON(http.StatusOK, message)
 }
