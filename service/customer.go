@@ -42,7 +42,7 @@ func TrimAndUpperCaseString(name string) string {
 
 func IsGenderValid(gender string) bool {
 	switch gender {
-	case "Male", "Female", "":
+	case model.Male.String(), model.Female, "":
 		return true
 	}
 	return false
