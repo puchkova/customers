@@ -14,7 +14,6 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// Routes
 	e.GET("/customers", controller.GetCustomers)
 	e.POST("/customers", controller.CreateCustomer)
 	e.PUT("/customers", controller.UpdateCustomer)
