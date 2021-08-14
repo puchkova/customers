@@ -5,7 +5,6 @@ import (
 	"customers/storage"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo/v4"
-	"net/http"
 	"regexp"
 	"strings"
 	"time"
@@ -40,60 +39,6 @@ func ParseTimeString(birthdate string) (time.Time, error) {
 
 func TrimAndUpperCaseString(name string) string {
 	return strings.ToUpper(strings.TrimSpace(name))
-}
-
-func IsDataValid(c echo.Context, firstname string, lastname string, birthdate string,
-	gender string, email string, address string, dateTimeType time.Time) (error, bool) {
-	if !IsBirthdateValid(dateTimeType, 18, 60) && len(birthdate) != 0 {
-		var errorMessage = "Age should be in the range from 18 to 60 years"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !IsValid(firstname, 1, 100) {
-		var errorMessage = "Invalid First Name"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !IsValid(lastname, 1, 100) {
-		var errorMessage = "Invalid Last Name"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !IsGenderValid(gender) {
-		var errorMessage = "Gender should be Male or Female"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !IsEmailValid(email) && len(email) != 0 {
-		var errorMessage = "Invalid email address format"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !IsValid(address, 2, 200) {
-		var errorMessage = "Invalid address"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	return nil, false
-}
-
-func RequiredFieldCheck(c echo.Context, firstname string, lastname string,
-	birthdate string, gender string, email string) (error, bool) {
-	if !FieldIsRequired(firstname) {
-		var errorMessage = "First Name is required field"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !FieldIsRequired(lastname) {
-		var errorMessage = "Last Name is required field"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !FieldIsRequired(birthdate) {
-		var errorMessage = "Birthdate is required field"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !FieldIsRequired(gender) {
-		var errorMessage = "Gender is required field"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	if !FieldIsRequired(email) {
-		var errorMessage = "Email is required field"
-		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
-	}
-	return nil, false
 }
 
 func IsGenderValid(gender string) bool {

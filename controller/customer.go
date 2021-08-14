@@ -7,6 +7,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/labstack/echo/v4"
 	"net/http"
+	"time"
 )
 
 func GetCustomers(c echo.Context) error {
@@ -33,12 +34,12 @@ func CreateCustomer(c echo.Context) error {
 	firstname, lastname, birthdate, gender, email, address := service.RetrieveQueryParameters(c)
 	dateTimeType, _ := service.ParseTimeString(birthdate)
 
-	err, done := service.RequiredFieldCheck(c, firstname, lastname, birthdate, gender, email)
+	err, done := RequiredFieldCheck(c, firstname, lastname, birthdate, gender, email)
 	if done {
 		return err
 	}
 
-	err2, done2 := service.IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err2, done2 := IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done2 {
 		return err2
 	}
@@ -54,7 +55,7 @@ func CreateCustomer(c echo.Context) error {
 
 	//return nil
 	var message = "The customer is added"
-	return c.JSON(http.StatusMethodNotAllowed, message)
+	return c.JSON(http.StatusOK, message)
 }
 
 func UpdateCustomer(c echo.Context) error {
@@ -62,7 +63,7 @@ func UpdateCustomer(c echo.Context) error {
 	firstname, lastname, birthdate, gender, email, address := service.RetrieveQueryParameters(c)
 	dateTimeType, _ := service.ParseTimeString(birthdate)
 
-	err, done := service.IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err, done := IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done {
 		return err
 	}
@@ -79,5 +80,59 @@ func UpdateCustomer(c echo.Context) error {
 		Address:   address})
 
 	var message = "The customer is updated"
-	return c.JSON(http.StatusMethodNotAllowed, message)
+	return c.JSON(http.StatusOK, message)
+}
+
+func IsDataValid(c echo.Context, firstname string, lastname string, birthdate string,
+	gender string, email string, address string, dateTimeType time.Time) (error, bool) {
+	if !service.IsBirthdateValid(dateTimeType, 18, 60) && len(birthdate) != 0 {
+		var errorMessage = "Age should be in the range from 18 to 60 years"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.IsValid(firstname, 1, 100) {
+		var errorMessage = "Invalid First Name"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.IsValid(lastname, 1, 100) {
+		var errorMessage = "Invalid Last Name"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.IsGenderValid(gender) {
+		var errorMessage = "Gender should be Male or Female"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.IsEmailValid(email) && len(email) != 0 {
+		var errorMessage = "Invalid email address format"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.IsValid(address, 2, 200) {
+		var errorMessage = "Invalid address"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	return nil, false
+}
+
+func RequiredFieldCheck(c echo.Context, firstname string, lastname string,
+	birthdate string, gender string, email string) (error, bool) {
+	if !service.FieldIsRequired(firstname) {
+		var errorMessage = "First Name is required field"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.FieldIsRequired(lastname) {
+		var errorMessage = "Last Name is required field"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.FieldIsRequired(birthdate) {
+		var errorMessage = "Birthdate is required field"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.FieldIsRequired(gender) {
+		var errorMessage = "Gender is required field"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	if !service.FieldIsRequired(email) {
+		var errorMessage = "Email is required field"
+		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
+	}
+	return nil, false
 }
