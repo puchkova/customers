@@ -10,7 +10,9 @@ CREATE TABLE customers
 );
 
 INSERT INTO customers(id, firstname, lastname, birthdate, gender, email, address)
-VALUES (gen_random_uuid(), 'Tatjana', 'Putskova', '1993-05-21', 'Female', 'email@gmail.com',
+VALUES ('346f6f5b-52a8-48e7-bbb6-99d0e368ed72', 'testFirstname', 'testLastname', '2000-01-01',
+        'Female', 'email@gmail.com', 'testAddress'),
+       (gen_random_uuid(), 'Tatjana', 'Putskova', '1993-05-21', 'Female', 'email@gmail.com',
         '19 Sütiste tee, Tallinn, Estonia'),
        (gen_random_uuid(), 'Tatjana', 'Larina', '2001-05-21', 'Female', 'email@gmail.com',
         'Pskovskaja gubernja, Russian Empire'),
