@@ -17,7 +17,7 @@ The project is a simple **Golang** **Echo** framework & **PostgreSQL** CRUD REST
 ## Installing&Running
 - Clone thist repo https://github.com/puchkova/customers.git
 - Start docker desktop app
-- Open your terminal and run the `docker-compose up` to create and run docker containers
+- Open your terminal and run `docker-compose up` command to create and run docker containers
 - Run `go run main.go` command to start the application
 
 ## Usage
