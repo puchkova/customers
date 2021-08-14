@@ -39,7 +39,7 @@ func CreateCustomer(c echo.Context) error {
 		return err
 	}
 
-	err2, done2 := IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err2, done2 := IsInputValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done2 {
 		return err2
 	}
@@ -63,7 +63,7 @@ func UpdateCustomer(c echo.Context) error {
 	firstname, lastname, birthdate, gender, email, address := service.RetrieveQueryParameters(c)
 	dateTimeType, _ := service.ParseTimeString(birthdate)
 
-	err, done := IsDataValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err, done := IsInputValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done {
 		return err
 	}
@@ -83,7 +83,7 @@ func UpdateCustomer(c echo.Context) error {
 	return c.JSON(http.StatusOK, message)
 }
 
-func IsDataValid(c echo.Context, firstname string, lastname string, birthdate string,
+func IsInputValid(c echo.Context, firstname string, lastname string, birthdate string,
 	gender string, email string, address string, dateTimeType time.Time) (error, bool) {
 	if !service.IsBirthdateValid(dateTimeType, 18, 60) && len(birthdate) != 0 {
 		var errorMessage = "Age should be in the range from 18 to 60 years"
