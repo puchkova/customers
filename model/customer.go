@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/jinzhu/gorm"
 	"github.com/satori/go.uuid"
+	"strings"
 	"time"
 )
 
@@ -28,12 +29,12 @@ type Customer struct {
 type Gender string
 
 const (
-	Male   Gender = "Male"
-	Female        = "Female"
+	Male   Gender = "MALE"
+	Female        = "FEMALE"
 )
 
 func (g Gender) String() string {
-	genders := [...]string{"Male", "Female"}
+	genders := [...]string{"MALE", "FEMALE"}
 	x := string(g)
 	for _, v := range genders {
 		if v == x {
@@ -57,7 +58,7 @@ func (c *Customer) MarshalJSON() ([]byte, error) {
 		Firstname: c.Firstname,
 		Lastname:  c.Lastname,
 		Birthdate: c.Birthdate.Format("2006-01-02"),
-		Gender:    c.Gender.String(),
+		Gender:    strings.Title(strings.ToLower(c.Gender.String())),
 		Email:     c.Email,
 		Address:   c.Address,
 		Alias:     (*Alias)(c),

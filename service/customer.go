@@ -19,7 +19,7 @@ func RetrieveQueryParameters(c echo.Context) (string, string, string, string, st
 	gender := c.QueryParam("gender")
 	email := c.QueryParam("email")
 	address := c.QueryParam("address")
-	return firstname, lastname, birthdate, gender, email, address
+	return firstname, lastname, birthdate, strings.ToUpper(gender), email, address
 }
 
 func GetAllCustomers() interface{} {
@@ -42,7 +42,7 @@ func TrimAndUpperCaseString(name string) string {
 
 func IsGenderValid(gender string) bool {
 	switch gender {
-	case model.Male.String(), model.Female, "":
+	case string(model.Male), model.Female, "":
 		return true
 	}
 	return false
