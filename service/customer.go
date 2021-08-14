@@ -32,7 +32,7 @@ func GetFilteredCustomers(query string, name string) *gorm.DB {
 	return DB.Where(query, "%"+name+"%").Find(&customers)
 }
 
-func GetParseTimeString(birthdate string) (time.Time, error) {
+func GetTimeString(birthdate string) (time.Time, error) {
 	return time.Parse("2006-01-02", birthdate)
 }
 

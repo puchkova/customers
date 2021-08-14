@@ -32,7 +32,7 @@ func GetCustomers(c echo.Context) error {
 
 func CreateCustomer(c echo.Context) error {
 	firstname, lastname, birthdate, gender, email, address := service.GetQueryParameters(c)
-	dateTimeType, _ := service.GetParseTimeString(birthdate)
+	dateTimeType, _ := service.GetTimeString(birthdate)
 
 	err, done := GetRequiredFieldErrorMessages(c, firstname, lastname, birthdate, gender, email)
 	if done {
@@ -60,7 +60,7 @@ func CreateCustomer(c echo.Context) error {
 func UpdateCustomer(c echo.Context) error {
 	id := c.QueryParam("id")
 	firstname, lastname, birthdate, gender, email, address := service.GetQueryParameters(c)
-	dateTimeType, _ := service.GetParseTimeString(birthdate)
+	dateTimeType, _ := service.GetTimeString(birthdate)
 
 	err, done := GetInvalidInputErrorMessages(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done {
