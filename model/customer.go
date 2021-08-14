@@ -32,10 +32,9 @@ const (
 	Female        = "Female"
 )
 
-func (e Gender) String() string {
+func (g Gender) String() string {
 	genders := [...]string{"Male", "Female"}
-
-	x := string(e)
+	x := string(g)
 	for _, v := range genders {
 		if v == x {
 			return x
