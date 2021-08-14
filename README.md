@@ -65,14 +65,15 @@ or use the URL http://localhost:1323/customers?firstname=Hugo&lastname=Bouvier&b
 - **GET** http://localhost:1323/customers?lastname=imPSO  *returns 5 rows*
 
 ### POST
-- **POST** http://localhost:1323/customers?firstname=JoJo *request is not allowed and message in response body "Last Name is required field"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier *request is not allowed and message in response body "Birthdate is required field"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2002-02-02 *request is not allowed and message in response body "Gender is required field"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2029-02-02&gender=Male *request is not allowed and message in response body "Email is required field"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2009-02-02&gender=Male&email=jojo.bouvier@gmail.com *request is not allowed and message in response body "Age should be in the range from 18 to 60 years"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2000-02-02&gender=Male&email=jojojojojo *request is not allowed and message in response body "Invalid email address format"*
-- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2000-02-02&gender=Unknown&email=jojo.bouvier@gmail.com *request is not allowed and message in response body "Gender should be Male or Female"*
+- **POST** http://localhost:1323/customers?firstname=JoJo *request is not allowed and message in the response body "Last Name is required field"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier *request is not allowed and message in the response body "Birthdate is required field"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2002-02-02 *request is not allowed and message in the response body "Gender is required field"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2029-02-02&gender=Male *request is not allowed and message in the response body "Email is required field"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2009-02-02&gender=Male&email=jojo.bouvier@gmail.com *request is not allowed and message in the response body "Age should be in the range from 18 to 60 years"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2000-02-02&gender=Male&email=jojojojojo *request is not allowed and message "Invalid email address format"*
+- **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2000-02-02&gender=Unknown&email=jojo.bouvier@gmail.com *request is not allowed and message "Gender should be Male or Female"*
 - **POST** http://localhost:1323/customers?firstname=JoJo&lastname=Bouvier&birthdate=2000-02-02&email=jojo.bouvier@gmail.com&gender=male *successful request and message "The customer is added"*
+- **POST** http://localhost:1323/customers?firstname=JaJo&lastname=Bouvier&birthdate=2000-02-02&email=jojo.bouvier@gmail.com&gender=male&address=Springfield *successful request and message "The customer is added"*
 
 ### PUT
     "Value": [
