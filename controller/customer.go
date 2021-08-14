@@ -15,8 +15,8 @@ func GetCustomers(c echo.Context) error {
 	firstname := c.QueryParam("firstname")
 	lastname := c.QueryParam("lastname")
 
-	firstnameToCompare := service.TrimAndUpperCaseString(firstname)
-	lastnameToCompare := service.TrimAndUpperCaseString(lastname)
+	firstnameToCompare := service.GetUppercaseAndTrimmedString(firstname)
+	lastnameToCompare := service.GetUppercaseAndTrimmedString(lastname)
 
 	if len(firstnameToCompare) != 0 {
 		query := "upper(firstname) LIKE ?"
@@ -31,15 +31,15 @@ func GetCustomers(c echo.Context) error {
 }
 
 func CreateCustomer(c echo.Context) error {
-	firstname, lastname, birthdate, gender, email, address := service.RetrieveQueryParameters(c)
-	dateTimeType, _ := service.ParseTimeString(birthdate)
+	firstname, lastname, birthdate, gender, email, address := service.GetQueryParameters(c)
+	dateTimeType, _ := service.GetParseTimeString(birthdate)
 
-	err, done := RequiredFieldCheck(c, firstname, lastname, birthdate, gender, email)
+	err, done := GetRequiredFieldErrorMessages(c, firstname, lastname, birthdate, gender, email)
 	if done {
 		return err
 	}
 
-	err2, done2 := IsInputValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err2, done2 := GetInvalidInputErrorMessages(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done2 {
 		return err2
 	}
@@ -59,10 +59,10 @@ func CreateCustomer(c echo.Context) error {
 
 func UpdateCustomer(c echo.Context) error {
 	id := c.QueryParam("id")
-	firstname, lastname, birthdate, gender, email, address := service.RetrieveQueryParameters(c)
-	dateTimeType, _ := service.ParseTimeString(birthdate)
+	firstname, lastname, birthdate, gender, email, address := service.GetQueryParameters(c)
+	dateTimeType, _ := service.GetParseTimeString(birthdate)
 
-	err, done := IsInputValid(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
+	err, done := GetInvalidInputErrorMessages(c, firstname, lastname, birthdate, gender, email, address, dateTimeType)
 	if done {
 		return err
 	}
@@ -82,17 +82,17 @@ func UpdateCustomer(c echo.Context) error {
 	return c.JSON(http.StatusOK, message)
 }
 
-func IsInputValid(c echo.Context, firstname string, lastname string, birthdate string,
+func GetInvalidInputErrorMessages(c echo.Context, firstname string, lastname string, birthdate string,
 	gender string, email string, address string, dateTimeType time.Time) (error, bool) {
 	if !service.IsBirthdateValid(dateTimeType, 18, 60) && len(birthdate) != 0 {
 		var errorMessage = "Age should be in the range from 18 to 60 years"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.IsValid(firstname, 1, 100) {
+	if !service.IsInputStringValid(firstname, 1, 100) {
 		var errorMessage = "Invalid First Name"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.IsValid(lastname, 1, 100) {
+	if !service.IsInputStringValid(lastname, 1, 100) {
 		var errorMessage = "Invalid Last Name"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
@@ -104,32 +104,32 @@ func IsInputValid(c echo.Context, firstname string, lastname string, birthdate s
 		var errorMessage = "Invalid email address format"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.IsValid(address, 2, 200) {
+	if !service.IsInputStringValid(address, 2, 200) {
 		var errorMessage = "Invalid address"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
 	return nil, false
 }
 
-func RequiredFieldCheck(c echo.Context, firstname string, lastname string,
+func GetRequiredFieldErrorMessages(c echo.Context, firstname string, lastname string,
 	birthdate string, gender string, email string) (error, bool) {
-	if !service.FieldIsRequired(firstname) {
+	if !service.IsFieldRequired(firstname) {
 		var errorMessage = "First Name is required field"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.FieldIsRequired(lastname) {
+	if !service.IsFieldRequired(lastname) {
 		var errorMessage = "Last Name is required field"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.FieldIsRequired(birthdate) {
+	if !service.IsFieldRequired(birthdate) {
 		var errorMessage = "Birthdate is required field"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.FieldIsRequired(gender) {
+	if !service.IsFieldRequired(gender) {
 		var errorMessage = "Gender is required field"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}
-	if !service.FieldIsRequired(email) {
+	if !service.IsFieldRequired(email) {
 		var errorMessage = "Email is required field"
 		return c.JSON(http.StatusMethodNotAllowed, errorMessage), true
 	}

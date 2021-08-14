@@ -12,7 +12,7 @@ import (
 
 var customers []model.Customer
 
-func RetrieveQueryParameters(c echo.Context) (string, string, string, string, string, string) {
+func GetQueryParameters(c echo.Context) (string, string, string, string, string, string) {
 	firstname := c.QueryParam("firstname")
 	lastname := c.QueryParam("lastname")
 	birthdate := c.QueryParam("birthdate")
@@ -32,11 +32,11 @@ func GetFilteredCustomers(query string, name string) *gorm.DB {
 	return DB.Where(query, "%"+name+"%").Find(&customers)
 }
 
-func ParseTimeString(birthdate string) (time.Time, error) {
+func GetParseTimeString(birthdate string) (time.Time, error) {
 	return time.Parse("2006-01-02", birthdate)
 }
 
-func TrimAndUpperCaseString(name string) string {
+func GetUppercaseAndTrimmedString(name string) string {
 	return strings.ToUpper(strings.TrimSpace(name))
 }
 
@@ -48,14 +48,14 @@ func IsGenderValid(gender string) bool {
 	return false
 }
 
-func FieldIsRequired(field string) bool {
+func IsFieldRequired(field string) bool {
 	if len(strings.TrimSpace(field)) != 0 {
 		return true
 	}
 	return false
 }
 
-func IsValid(str string, min int, max int) bool {
+func IsInputStringValid(str string, min int, max int) bool {
 	if len(strings.TrimSpace(str)) == 0 || len(str) > min && len(str) < max {
 		return true
 	}
