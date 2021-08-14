@@ -37,7 +37,7 @@ func (c *Customer) GetGender() Gender {
 }
 
 func (e Gender) String() string {
-	genders := [...]string{"Unknown", "Male", "Female"}
+	genders := [...]string{"Male", "Female"}
 
 	x := string(e)
 	for _, v := range genders {
